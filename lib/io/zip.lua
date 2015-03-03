@@ -1,16 +1,8 @@
 local bitwise= require 'bitwise'
 
-local archive_decryption_header= require 'io.zip.archive_decryption_header'
-local archive_extra_data_record= require 'io.zip.archive_extra_data_record'
 local central_directory_header= require 'io.zip.central_directory_header'
-local data_descriptor= require 'io.zip.data_descriptor'
-local digital_signature= require 'io.zip.digital_signature'
-local encryption_header= require 'io.zip.encryption_header'
 local end_of_central_directory_record= require 'io.zip.end_of_central_directory_record'
-local file_data= require 'io.zip.file_data'
 local local_file_header= require 'io.zip.local_file_header'
-local zip64_end_of_central_directory_locator= require 'io.zip.zip64_end_of_central_directory_locator'
-local zip64_end_of_central_directory_record= require 'io.zip.zip64_end_of_central_directory_record'
 
 local zip= {}
 
