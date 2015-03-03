@@ -10,23 +10,22 @@ if not (#arg > 0) then
     os.exit(0)
 end
 
-local file= zip.open(arg[1])
+local zfile= zip.open(arg[1])
 
 if arg[2] then
-    local data, err= file:open(arg[2])
-    if not data then
+    local file, err= zfile:open(arg[2])
+    if not file then
         error(err)
     end
 
-    for k, v in pairs(data) do
-        if k ~= 'compressed_data' then
-            print(k, v)
-        end
-    end
+    print(file:read('*a'))
+    -- for l in file:lines() do
+    --     print(l)
+    -- end
 else
-    for fname in file:files() do
+    for fname in zfile:files() do
         print(fname)
     end
 end
 
-file:close()
+zfile:close()

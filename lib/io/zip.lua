@@ -1,5 +1,6 @@
 local bitwise= require 'bitwise'
-
+local byte_buffer= require 'io.byte_buffer'
+local zip_entry= require 'io.zip.entry'
 local central_directory_header= require 'io.zip.central_directory_header'
 local end_of_central_directory_record= require 'io.zip.end_of_central_directory_record'
 local local_file_header= require 'io.zip.local_file_header'
@@ -57,7 +58,7 @@ function zip.open(filename)
         return itr
     end
 
-    function zfile:open(filename)
+    function zfile:open(filename, mode)
         assert(filename)
 
         local idx
@@ -75,7 +76,7 @@ function zip.open(filename)
 
         self.__pos= central_directory_header.relative_offset_of_local_header
         local local_file_header= local_file_header.parse(self)
-        return local_file_header
+        return zip_entry.open(local_file_header, mode)
     end
 
     function zfile:close()
